@@ -1,6 +1,9 @@
 package co.trakien.data;
 
 import co.trakien.data.model.LoggedInUser;
+import co.trakien.interfaces.CustomerApi;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
 

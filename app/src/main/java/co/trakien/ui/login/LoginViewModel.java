@@ -10,6 +10,9 @@ import co.trakien.data.LoginRepository;
 import co.trakien.data.Result;
 import co.trakien.data.model.LoggedInUser;
 import co.trakien.R;
+import co.trakien.interfaces.CustomerApi;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginViewModel extends ViewModel {
 
@@ -32,7 +35,6 @@ public class LoginViewModel extends ViewModel {
     public void login(String username, String password) {
         // can be launched in a separate asynchronous job
         Result<LoggedInUser> result = loginRepository.login(username, password);
-
         if (result instanceof Result.Success) {
             LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
             loginResult.setValue(new LoginResult(new LoggedInUserView(data.getDisplayName())));
