@@ -5,6 +5,7 @@ import android.app.Activity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -22,10 +23,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import co.trakien.R;
-import co.trakien.ui.login.LoginViewModel;
-import co.trakien.ui.login.LoginViewModelFactory;
 import co.trakien.databinding.ActivityLoginBinding;
+import co.trakien.products.ProductsActivity;
+import co.trakien.R;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -128,6 +128,8 @@ public class LoginActivity extends AppCompatActivity {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
         // TODO : initiate successful logged in experience
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
+        Intent products = new Intent(this, ProductsActivity.class);
+        startActivity(products);
     }
 
     private void showLoginFailed(@StringRes Integer errorString) {

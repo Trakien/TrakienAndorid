@@ -1,5 +1,7 @@
 package co.trakien.models;
 
+import java.util.List;
+
 public class ProductDto {
 
     private String id;
@@ -8,13 +10,13 @@ public class ProductDto {
     private String category;
     private String brand;
     private String updateDates;
-    private String stores;
+    private List<StoreDto> stores;
 
     public ProductDto() {
     }
 
-    public ProductDto(String id, String ref, String name, String category, String brand, String updateDates,
-                      String stores) {
+    public ProductDto(String id, String ref, String name, String category, String brand,
+                      List<StoreDto> stores) {
         this.id = id;
         this.ref = ref;
         this.name = name;
@@ -56,22 +58,13 @@ public class ProductDto {
         this.ref = ref;
     }
 
-    public String getStores() {
+    public List<StoreDto> getStores() {
         return stores;
     }
 
-    public void setStores(String stores) {
+    public void setStores(List<StoreDto> stores) {
         this.stores = stores;
     }
-
-    public String getUpdateDates() {
-        return updateDates;
-    }
-
-    public void setUpdateDates(String updateDates) {
-        this.updateDates = updateDates;
-    }
-
 
     public String getBrand() {
         return brand;

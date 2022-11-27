@@ -10,7 +10,6 @@ import co.trakien.data.LoginRepository;
 import co.trakien.data.Result;
 import co.trakien.data.model.LoggedInUser;
 import co.trakien.R;
-import co.trakien.interfaces.CustomerApi;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
