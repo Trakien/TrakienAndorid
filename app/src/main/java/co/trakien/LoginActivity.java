@@ -12,10 +12,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import co.trakien.constants.Const;
 import co.trakien.data.model.LoggedInUser;
 import co.trakien.interfaces.CustomerApi;
 import co.trakien.models.LoginDto;
 import co.trakien.models.TokenDto;
+import co.trakien.products.ProductsActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -62,10 +64,10 @@ public class LoginActivity extends AppCompatActivity {
     public LoggedInUser user;
 
     private void login(String email, String password){
-        Retrofit customerAPI = new Retrofit.Builder().baseUrl("http://192.168.1.5:81").addConverterFactory(GsonConverterFactory.create()).build();
+        Retrofit customerAPI = new Retrofit.Builder().baseUrl(Const.customers_url).addConverterFactory(GsonConverterFactory.create()).build();
         CustomerApi customerApiService =customerAPI.create(CustomerApi.class);
         Call<TokenDto> res = customerApiService.login(new LoginDto(email,password));
-        user = new LoggedInUser();
+        user = LoggedInUser.getInstance();
         user.setEmail(email);
         res.enqueue(new Callback<TokenDto>() {
             @Override
@@ -86,9 +88,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
     public void goHome(){
-        Intent home = new Intent(this, HomeActivity.class);
-        home.putExtra("userId",user.getToken());
-        home.putExtra("email",user.getEmail());
+        Intent home = new Intent(this, ProductsActivity.class);
         startActivity(home);
     }
     public void goRegister(){

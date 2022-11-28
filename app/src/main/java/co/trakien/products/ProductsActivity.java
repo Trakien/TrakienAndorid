@@ -17,6 +17,7 @@ import java.util.List;
 
 import co.trakien.R;
 import co.trakien.constants.Const;
+import co.trakien.data.model.LoggedInUser;
 import co.trakien.interfaces.FiltersApi;
 import co.trakien.interfaces.ProductApi;
 import co.trakien.models.FiltersDto;
@@ -39,7 +40,7 @@ public class ProductsActivity extends AppCompatActivity {
     private MultiSpinner brandsFilter;
     private MultiSpinner categoriesFilter;
     private FiltersDto filters = new FiltersDto("",new ArrayList<>(),Arrays.asList("Celulares"));
-    private String token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MzU4MjUwNmQzMzE4NDYzZTM0N2JmNWIiLCJjbGFpbXMiOlsiQ1VTVE9NRVIiLCJBRE1JTiJdLCJpYXQiOjE2Njk2NjE0OTcsImV4cCI6MTY2OTY2NTA5N30.kvcPC6pF-vvbPrzl07AC8sbYZL1YtCLpKbI_j89rOvU";
+    private String token = LoggedInUser.getInstance().getToken();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -7,12 +7,12 @@ public class LoggedInUser {
 
     private String token;
     private String email;
+    private static LoggedInUser _instance = new LoggedInUser();
 
-    public LoggedInUser(String token, String email) {
-        this.token = token;
-        this.email = email;
-    }
-    public LoggedInUser() {
+    private LoggedInUser(){};
+
+    public static LoggedInUser getInstance(){
+        return _instance;
     }
 
     public String getToken() {
@@ -22,6 +22,6 @@ public class LoggedInUser {
     public String getEmail() {
         return email;
     }
-    public void setToken(String token){this.token = token;}
+    public void setToken(String token){this.token = "Bearer " + token;}
     public void setEmail(String email){this.email = email;}
 }
