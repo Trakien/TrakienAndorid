@@ -8,8 +8,8 @@
 
     <EditText
         android:id="@+id/searchName"
-        android:layout_width="384dp"
-        android:layout_height="51dp"
+        android:layout_width="375dp"
+        android:layout_height="50dp"
         android:layout_margin="5dp"
         android:layout_marginStart="50dp"
         android:layout_marginTop="10dp"
@@ -23,42 +23,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></EditText>
 
-    <Spinner
-        android:id="@+id/brands"
-        android:layout_width="300dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="50dp"
-        android:contentDescription="@string/text_spinner_brands"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchName" />
-
-    <Spinner
+    <co.trakien.products.elements.MultiSpinner
         android:id="@+id/categories"
         android:layout_width="300dp"
         android:layout_height="48dp"
-        android:layout_marginStart="50dp"
         android:layout_marginTop="15dp"
-        android:layout_marginEnd="50dp"
-        android:clickable="true"
         android:contentDescription="@string/text_spinner_categories"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/brands" />
 
+    <co.trakien.products.elements.MultiSpinner
+        android:id="@+id/brands"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="15dp"
+        android:contentDescription="@string/text_spinner_brands"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchName" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_products"
-        android:layout_width="374dp"
-        android:layout_height="496dp"
+        android:layout_width="375dp"
+        android:layout_height="522dp"
         android:layout_marginStart="50dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categories"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/categories" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

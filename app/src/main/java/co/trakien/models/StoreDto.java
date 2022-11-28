@@ -9,15 +9,25 @@ public class StoreDto {
     private String url;
     private List<String> prices;
     private List<Date> dates;
+    private String img;
 
     public StoreDto() {
     }
 
-    public StoreDto(String name, String url, List<String> prices, List<Date> dates) {
+    public StoreDto(String name, String url, List<String> prices, List<Date> dates, String img) {
         this.name = name;
         this.url = url;
         this.prices = prices;
         this.dates = dates;
+        this.img = img;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public String getName() {

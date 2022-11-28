@@ -1,6 +1,13 @@
 package co.trakien.products;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +18,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
+import java.io.InputStream;
+import java.net.URL;
 import java.util.List;
 
 import co.trakien.R;
@@ -37,16 +48,44 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ProductsAdapter.ViewHolder holder, int position) {
         ProductDto product = products.get(position);
-        //Pendiente agregar imagen
-        //Glide.with(context).load(product.getImage);
+        String img = getMinPrice(product.getStores(),3);
+        if (img != null) {
+        Picasso.get()
+                .load(img)
+                .error(R.mipmap.ic_launcher)
+                .resize(200,250)
+                .centerInside()
+                .into(holder.imageProduct);
+        }
         holder.name.setText("Nombre: " + product.getName());
         holder.brand.setText("Marca: " + product.getBrand());
         holder.price.setText("Precio: " + getMinPrice(product.getStores(),0));
         holder.store.setText("Tienda: " + getMinPrice(product.getStores(),1));
-        //pendiente enlazar a link
-        //holder.link.callOnClick();
+        holder.link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToUrl(getMinPrice(product.getStores(),2));
+            }
+        });
         //pendiente enlazar a grafica details
         //holder.details.callOnClick();
+    }
+
+    private void goToUrl (String url) {
+        Uri uriUrl = Uri.parse(url);
+        Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+        launchBrowser.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(launchBrowser);
+    }
+
+    public static Bitmap LoadImageFromWebOperations(String url) {
+        try {
+            InputStream is = new URL(url).openStream();
+            Bitmap bitmap = BitmapFactory.decodeStream(is);
+            return bitmap;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @Override
@@ -57,14 +96,18 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
     private String getMinPrice(List<StoreDto> stores, int opt){
         int res = 0;
         String resStore = "";
+        String link = "";
+        String img = "";
         for(StoreDto store : stores){
             int price = Integer.parseInt(store.getPrices().get(0));
             if (price > res) {
                 res = price;
                 resStore = store.getName();
+                link = store.getUrl();
+                img = store.getImg();
             }
         }
-        return opt == 0 ? String.valueOf(res) : resStore;
+        return opt == 0 ? String.valueOf(res) : opt == 1 ? resStore : opt == 2 ? link : img;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
