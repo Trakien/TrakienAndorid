@@ -5,19 +5,23 @@ package co.trakien.data.model;
  */
 public class LoggedInUser {
 
-    private String userId;
-    private String displayName;
+    private String token;
+    private String email;
 
-    public LoggedInUser(String userId, String displayName) {
-        this.userId = userId;
-        this.displayName = displayName;
+    public LoggedInUser(String token, String email) {
+        this.token = token;
+        this.email = email;
+    }
+    public LoggedInUser() {
     }
 
-    public String getUserId() {
-        return userId;
+    public String getToken() {
+        return token;
     }
 
-    public String getDisplayName() {
-        return displayName;
+    public String getEmail() {
+        return email;
     }
+    public void setToken(String token){this.token = token;}
+    public void setEmail(String email){this.email = email;}
 }
