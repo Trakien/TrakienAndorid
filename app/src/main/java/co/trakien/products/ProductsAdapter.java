@@ -147,16 +147,17 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
                 if(items.size()>0){
                     List<ILineDataSet> filteredLines = new ArrayList<>();
                     for (ILineDataSet line : lineDataSets){
-                        System.out.println(line.getLabel());
                         if(items.contains(line.getLabel())){
                             filteredLines.add(line);
                         }
                     }
                     holder.graph.setData(new LineData(filteredLines));
-                    holder.graph.refreshDrawableState();
+                    holder.graph.setVisibility(View.INVISIBLE);
+                    holder.graph.setVisibility(View.VISIBLE);
                 } else {
                     holder.graph.setData(new LineData(lineDataSets));
-                    holder.graph.refreshDrawableState();
+                    holder.graph.setVisibility(View.INVISIBLE);
+                    holder.graph.setVisibility(View.VISIBLE);
                 }
             }
         });
