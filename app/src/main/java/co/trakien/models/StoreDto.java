@@ -1,5 +1,6 @@
 package co.trakien.models;
 
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
@@ -8,7 +9,7 @@ public class StoreDto {
     private String name;
     private String url;
     private List<String> prices;
-    private List<Date> dates;
+    private List<Date> updateDates;
     private String img;
 
     public StoreDto() {
@@ -18,7 +19,7 @@ public class StoreDto {
         this.name = name;
         this.url = url;
         this.prices = prices;
-        this.dates = dates;
+        this.updateDates = dates;
         this.img = img;
     }
 
@@ -54,11 +55,22 @@ public class StoreDto {
         this.prices = prices;
     }
 
-    public List<Date> getDates() {
-        return dates;
+    public List<Date> getUpdateDates() {
+        return updateDates;
     }
 
-    public void setDates(List<Date> dates) {
-        this.dates = dates;
+    public void setUpdateDates(List<Date> updateDates) {
+        this.updateDates = updateDates;
+    }
+
+    public Integer getPriceAtDate(String dateToSearch){
+        Integer res = null;
+        for (int i = 0; i < updateDates.size(); i++){
+            String dateToEvaluate = updateDates.get(i).toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString();
+            if(dateToEvaluate.equals(dateToSearch)){
+                res = Integer.parseInt(prices.get(i));
+            }
+        }
+        return res;
     }
 }
