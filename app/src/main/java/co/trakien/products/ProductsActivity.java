@@ -1,25 +1,31 @@
 package co.trakien.products;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Spinner;
+import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import co.trakien.LoginActivity;
 import co.trakien.R;
 import co.trakien.constants.Const;
 import co.trakien.data.model.LoggedInUser;
 import co.trakien.interfaces.FiltersApi;
-import co.trakien.interfaces.ProductApi;
 import co.trakien.models.FiltersDto;
 import co.trakien.models.ProductDto;
 import co.trakien.products.elements.MultiSpinner;
@@ -41,7 +47,12 @@ public class ProductsActivity extends AppCompatActivity {
     private MultiSpinner categoriesFilter;
     private FiltersDto filters = new FiltersDto("",new ArrayList<>(),Arrays.asList("Celulares"));
     private String token = LoggedInUser.getInstance().getToken();
+    private ImageButton firstPage, prevPage, nextPage, lastPage;
+    private TextView pagesText;
+    private final Integer numProducts = 12;
+    private Integer actPage = 0, pages;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,11 +60,60 @@ public class ProductsActivity extends AppCompatActivity {
         searchFilter = findViewById(R.id.searchName);
         brandsFilter = findViewById(R.id.brands);
         categoriesFilter = findViewById(R.id.categories);
+        pagesText = findViewById(R.id.info_pages);
+        firstPage = findViewById(R.id.first_page);
+        prevPage = findViewById(R.id.prev_page);
+        nextPage = findViewById(R.id.next_page);
+        lastPage = findViewById(R.id.last_page);
         initCategories();
         initBrands();
         recyclerView = findViewById(R.id.rv_products);
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),1));
         initSearchFilter();
+        initPaginator();
+    }
+
+    private void initPaginator(){
+        firstPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                actPage = 0;
+                setTextPages();
+                setAdapter();
+            }
+        });
+        prevPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (actPage > 0){
+                    actPage--;
+                    setTextPages();
+                    setAdapter();
+                }
+            }
+        });
+        nextPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (actPage < pages - 1){
+                    actPage++;
+                    setTextPages();
+                    setAdapter();
+                }
+            }
+        });
+        lastPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                actPage =  pages - 1;
+                setTextPages();
+                setAdapter();
+            }
+        });
+    }
+
+    private void setTextPages(){
+        pagesText.setText((actPage + 1) + "/" + pages);
     }
 
     private void initCategories(){
@@ -71,7 +131,7 @@ public class ProductsActivity extends AppCompatActivity {
                     setCategories();
                     setProducts();
                 } else {
-                    Toast.makeText(ProductsActivity.this, "Redireccion login", Toast.LENGTH_SHORT).show();
+                    goLogin();
                 }
             }
 
@@ -97,7 +157,7 @@ public class ProductsActivity extends AppCompatActivity {
                     setBrands();
                     setProducts();
                 } else {
-                    Toast.makeText(ProductsActivity.this, "Redireccion login", Toast.LENGTH_SHORT).show();
+                    goLogin();
                 }
             }
 
@@ -153,7 +213,7 @@ public class ProductsActivity extends AppCompatActivity {
                     brands = response.body();
                     setBrands();
                 } else {
-                    Toast.makeText(ProductsActivity.this, "Redireccion login", Toast.LENGTH_SHORT).show();
+                    goLogin();
                 }
             }
 
@@ -177,7 +237,7 @@ public class ProductsActivity extends AppCompatActivity {
                     categories = response.body();
                     setCategories();
                 } else {
-                    Toast.makeText(ProductsActivity.this, "Redireccion login", Toast.LENGTH_SHORT).show();
+                    goLogin();
                 }
             }
 
@@ -204,6 +264,16 @@ public class ProductsActivity extends AppCompatActivity {
         });
     }
 
+    private void setAdapter(){
+        List<ProductDto> pageProducts = new ArrayList<>();
+        if(actPage - 1 != pages)
+            if (products.size() >= (actPage + 1) * numProducts) pageProducts = products.subList(actPage * numProducts, (actPage + 1) * numProducts);
+        else
+            if (products.size() > actPage) pageProducts = products.subList(actPage * numProducts, products.size());
+        productsAdapter = new ProductsAdapter(pageProducts, getApplicationContext());
+        recyclerView.setAdapter(productsAdapter);
+    }
+
     private void setProducts(){
         Retrofit filterAPI = new Retrofit.Builder().baseUrl(Const.products_url).addConverterFactory(GsonConverterFactory.create()).build();
         FiltersApi filtersApiService = filterAPI.create(FiltersApi.class);
@@ -215,9 +285,10 @@ public class ProductsActivity extends AppCompatActivity {
             public void onResponse(Call<List<ProductDto>> call, Response<List<ProductDto>> response) {
                 if (response.isSuccessful()){
                     products = response.body();
-                    productsAdapter = new ProductsAdapter(products, getApplicationContext());
-                    recyclerView.setAdapter(productsAdapter);
-
+                    actPage = 0;
+                    pages = (int) Math.ceil(products.size() / numProducts);
+                    setTextPages();
+                    setAdapter();
                 } else {
                     Toast.makeText(ProductsActivity.this, "Redireccion login", Toast.LENGTH_SHORT).show();
                 }
@@ -229,5 +300,12 @@ public class ProductsActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    public void goLogin(){
+        Toast.makeText(ProductsActivity.this, "Vuelva a iniciar sesión", Toast.LENGTH_SHORT).show();
+        Intent login = new Intent(this, LoginActivity.class);
+        startActivity(login);
     }
 }

@@ -65,11 +65,15 @@ public class StoreDto {
 
     public Integer getPriceAtDate(String dateToSearch){
         Integer res = null;
+
         for (int i = 0; i < updateDates.size(); i++){
             String dateToEvaluate = updateDates.get(i).toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString();
             if(dateToEvaluate.equals(dateToSearch)){
                 res = Integer.parseInt(prices.get(i));
             }
+        }
+        if (res == null){
+
         }
         return res;
     }

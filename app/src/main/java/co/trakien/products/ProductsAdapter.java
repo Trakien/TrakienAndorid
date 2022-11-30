@@ -71,7 +71,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductsAdapter.ViewHolder holder, int position) {
+    public synchronized void onBindViewHolder(@NonNull ProductsAdapter.ViewHolder holder, int position) {
         ProductDto product = products.get(position);
         String img = getMinPrice(product.getStores(),3);
         if (img != null) {
@@ -105,8 +105,14 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
         ArrayList<ILineDataSet> lineDataSets = new ArrayList<>();
         for (StoreDto store : product.getStores()){
             List<Entry> entryList = new ArrayList<>();
-            for (int i = 0 ; i < xAxe.size() ; i++){
-                entryList.add(new Entry(i,store.getPriceAtDate(xAxe.get(i))));
+            Integer counter = 0;
+            for (String date : xAxe){
+                Integer price = store.getPriceAtDate(date);
+                if(price != null){
+                    Entry entry = new Entry(counter,(float)price);
+                    entryList.add(entry);
+                }
+                counter++;
             }
             LineDataSet values = new LineDataSet(entryList,store.getName());
             stores.add(store.getName());

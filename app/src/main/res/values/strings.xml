@@ -26,4 +26,6 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="nombre">Nombre</string>
+    <string name="txt_pages">1/25</string>
+    <string name="button_paginator">button for paginator</string>
 </resources>
