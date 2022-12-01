@@ -29,7 +29,6 @@
         android:background="@color/white"
         android:contentDescription="Busqueda producto button"
         android:scaleType="fitCenter"
-        android:onClick="productsPage"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/busqueda_icon" />
