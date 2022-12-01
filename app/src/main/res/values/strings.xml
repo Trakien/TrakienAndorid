@@ -27,10 +27,10 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="nombre">Nombre</string>
 
-    <string name="profile">Profile Info: </string>
-    <string name="nameInfo">Name: </string>
-    <string name="lastNameInfo">Last Name: </string>
-    <string name="emailInfo">Email: </string>
-    <string name="dateInfo">With us since: </string>
+    <string name="profile">Info. Perfil: </string>
+    <string name="nameInfo">Nombre: </string>
+    <string name="lastNameInfo">Apellido: </string>
+    <string name="emailInfo">Correo: </string>
+    <string name="dateInfo">Miembro desde: </string>
     <string name="back">Volver</string>
 </resources>

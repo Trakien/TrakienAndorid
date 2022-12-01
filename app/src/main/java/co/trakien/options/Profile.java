@@ -26,6 +26,7 @@ public class Profile extends AppCompatActivity {
     TextView dateInfo, nameInfo, lastNameInfo, emailinfo;
     Button back;
     String emailToken = LoggedInUser.getInstance().getEmail();
+    String token = LoggedInUser.getInstance().getToken();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,7 @@ public class Profile extends AppCompatActivity {
         dateInfo = findViewById(R.id.dateInfo);
         nameInfo = findViewById(R.id.nameInfo);
         lastNameInfo = findViewById(R.id.lastNameInfo);
-        emailinfo.findViewById(R.id.emailinfo);
+        emailinfo = findViewById(R.id.emailinfo);
         back = findViewById(R.id.back);
         setProfile();
 
@@ -44,7 +45,7 @@ public class Profile extends AppCompatActivity {
     private void setProfile(){
         Retrofit customerAPI = new Retrofit.Builder().baseUrl(Const.customers_url).addConverterFactory(GsonConverterFactory.create()).build();
         CustomerApi customerApiService =customerAPI.create(CustomerApi.class);
-        Call<CustomerDto> infoProfile = customerApiService.findByEmail(emailToken);
+        Call<CustomerDto> infoProfile = customerApiService.findByEmail(emailToken, token);
         infoProfile.enqueue(new Callback<CustomerDto>() {
             @Override
             public void onResponse(@NonNull Call<CustomerDto> call, @NonNull Response<CustomerDto> response) {
@@ -52,10 +53,10 @@ public class Profile extends AppCompatActivity {
                     if (response.isSuccessful()){
                         CustomerDto cus = response.body();
                         assert cus != null;
-                        dateInfo.setText(cus.getCreatedAt());
-                        nameInfo.setText(cus.getName());
-                        lastNameInfo.setText(cus.getLastName());
-                        emailinfo.setText(cus.getEmail());
+                        dateInfo.setText(dateInfo.getText() +" "+ cus.getCreatedAt());
+                        nameInfo.setText(nameInfo.getText() +" "+ cus.getName());
+                        lastNameInfo.setText(lastNameInfo.getText() +" " + cus.getLastName());
+                        emailinfo.setText(emailinfo.getText() + " " + cus.getEmail());
                     }
                 } catch (Exception ex) {
                     Toast.makeText(Profile.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
