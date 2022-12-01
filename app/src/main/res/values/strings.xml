@@ -1,12 +1,38 @@
 <resources>
     <string name="app_name">Trakien</string>
-    <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
+    <string name="text_spinner_brands">Brands</string>
+    <string name="text_spinner_categories">Categories</string>
+    <string name="text_search">Buscar</string>
+    <string name="txt_card_image">Image Product</string>
+    <string name="txt_card_name">Name</string>
+    <string name="txt_card_brand">Brand</string>
+    <string name="txt_card_price">Price</string>
+    <string name="txt_card_store">Store</string>
+    <string name="txt_card_link">Link</string>
+    <string name="txt_card_details">Detalles</string>
+    <string name="txt_card_date">Update Date</string>
+    <string name="todo">TODO</string>
+    <string name="ingresar_email">Ingresar Email</string>
+    <string name="iniciar_sesion">Iniciar Sesion</string>
+    <string name="contrase_a">Contraseña</string>
+    <string name="registrarse">registrarse</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="nombre">Nombre</string>
+    <string name="profile">Info. Perfil: </string>
+    <string name="nameInfo">Nombre: </string>
+    <string name="lastNameInfo">Apellido: </string>
+    <string name="emailInfo">Correo: </string>
+    <string name="dateInfo">Miembro desde: </string>
+    <string name="back">Volver</string>
+    <string name="avisar">Avisar</string>
+    <string name="info">Resultado</string>
+    <string name="txt_pages">1/25</string>
+    <string name="button_paginator">button for paginator</string>
 </resources>
