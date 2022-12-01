@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import co.trakien.R;
+import co.trakien.constants.Const;
 import co.trakien.data.model.LoggedInUser;
 import co.trakien.interfaces.CustomerApi;
 import co.trakien.models.CustomerDto;
@@ -41,7 +42,7 @@ public class Profile extends AppCompatActivity {
     }
 
     private void setProfile(){
-        Retrofit customerAPI = new Retrofit.Builder().baseUrl("http://192.168.1.5:81").addConverterFactory(GsonConverterFactory.create()).build();
+        Retrofit customerAPI = new Retrofit.Builder().baseUrl(Const.customers_url).addConverterFactory(GsonConverterFactory.create()).build();
         CustomerApi customerApiService =customerAPI.create(CustomerApi.class);
         Call<CustomerDto> infoProfile = customerApiService.findByEmail(emailToken);
         infoProfile.enqueue(new Callback<CustomerDto>() {

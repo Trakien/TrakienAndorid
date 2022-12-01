@@ -17,6 +17,7 @@ import co.trakien.data.model.LoggedInUser;
 import co.trakien.interfaces.CustomerApi;
 import co.trakien.models.LoginDto;
 import co.trakien.models.TokenDto;
+import co.trakien.options.Profile;
 import co.trakien.products.ProductsActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -88,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
     public void goHome(){
-        Intent home = new Intent(this, ProductsActivity.class);
+        Intent home = new Intent(this, Profile.class);
         startActivity(home);
     }
     public void goRegister(){

@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import co.trakien.constants.Const;
 import co.trakien.data.model.LoggedInUser;
 import co.trakien.interfaces.CustomerApi;
 import co.trakien.models.CustomerDto;
@@ -69,7 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
             this.name.setError("Campo Requerido");
             this.lastName.setError("Campo Requerido");
         }else{
-        Retrofit customerAPI = new Retrofit.Builder().baseUrl("http://192.168.1.5:81").addConverterFactory(GsonConverterFactory.create()).build();
+        Retrofit customerAPI = new Retrofit.Builder().baseUrl(Const.customers_url).addConverterFactory(GsonConverterFactory.create()).build();
         CustomerApi customerApiService =customerAPI.create(CustomerApi.class);
         Call<CustomerDto> res = customerApiService.create(new CustomerDto("",name,password,email,lastName,""));
         res.enqueue(new Callback<CustomerDto>() {
