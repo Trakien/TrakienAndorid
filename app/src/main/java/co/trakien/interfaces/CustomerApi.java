@@ -8,6 +8,7 @@ import co.trakien.models.TokenDto;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -26,6 +27,8 @@ public interface CustomerApi {
     public Call<CustomerDto> update(@Body CustomerDto customer, @Path("id") String id);
     @POST("/v2/auth")
     public Call<TokenDto> login(@Body LoginDto loginDto);
+    @GET("/v2/auth")
+    public Call<String> activeToken(@Header("Authorization") String authToken);
 
 
 }

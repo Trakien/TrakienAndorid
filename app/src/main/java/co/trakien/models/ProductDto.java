@@ -1,6 +1,16 @@
 package co.trakien.models;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class ProductDto {
 
@@ -9,8 +19,8 @@ public class ProductDto {
     private String name;
     private String category;
     private String brand;
-    private String updateDates;
     private List<StoreDto> stores;
+    private boolean visibility = false;
 
     public ProductDto() {
     }
@@ -22,7 +32,6 @@ public class ProductDto {
         this.name = name;
         this.category = category;
         this.brand = brand;
-        this.updateDates = updateDates;
         this.stores = stores;
     }
 
@@ -74,4 +83,21 @@ public class ProductDto {
         this.brand = brand;
     }
 
+    public boolean isVisibility() {
+        return visibility;
+    }
+
+    public void setVisibility(boolean visibility) {
+        this.visibility = visibility;
+    }
+
+    public List<String> getXChartInfo(){
+        Set<String> xDates = new TreeSet<>();
+        for( StoreDto store : stores ){
+            for ( Date date : store.getUpdateDates() ){
+                xDates.add(date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString());
+            }
+        }
+        return xDates.stream().collect(Collectors.toList());
+    }
 }

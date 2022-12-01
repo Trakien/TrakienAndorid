@@ -16,6 +16,7 @@ public class LoggedInUser {
     }
 
     public String getToken() {
+
         return token;
     }
 

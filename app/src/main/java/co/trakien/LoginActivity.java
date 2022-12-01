@@ -28,10 +28,12 @@ public class LoginActivity extends AppCompatActivity {
 
 
     Button registrarse;
+    private LoggedInUser user = LoggedInUser.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        verifyToken();
         final EditText email = findViewById(R.id.editTextTextEmailAddress);
         final EditText password = findViewById(R.id.editTextTextPassword2);
         final Button iniciarSesion = findViewById(R.id.button);
@@ -61,13 +63,11 @@ public class LoginActivity extends AppCompatActivity {
         iniciarSesion.setOnClickListener(v -> login(email.getText().toString(),password.getText().toString()));
 
     }
-    public LoggedInUser user;
 
     private void login(String email, String password){
         Retrofit customerAPI = new Retrofit.Builder().baseUrl(Const.customers_url).addConverterFactory(GsonConverterFactory.create()).build();
         CustomerApi customerApiService =customerAPI.create(CustomerApi.class);
         Call<TokenDto> res = customerApiService.login(new LoginDto(email,password));
-        user = LoggedInUser.getInstance();
         user.setEmail(email);
         res.enqueue(new Callback<TokenDto>() {
             @Override
@@ -86,6 +86,26 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    public void verifyToken(){
+        if (user.getToken() != null){
+            Retrofit customerAPI = new Retrofit.Builder().baseUrl(Const.customers_url).addConverterFactory(GsonConverterFactory.create()).build();
+            CustomerApi customerApiService =customerAPI.create(CustomerApi.class);
+            Call<String> res = customerApiService.activeToken(user.getToken());
+            res.enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(Call<String> call, Response<String> response) {
+                    if(response.isSuccessful()){
+                        goHome();
+                    }
+                }
+                @Override
+                public void onFailure(Call<String> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            });
+        }
     }
     public void goHome(){
         Intent home = new Intent(this, ProductsActivity.class);
