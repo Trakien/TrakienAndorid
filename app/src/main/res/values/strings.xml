@@ -33,4 +33,6 @@
     <string name="emailInfo">Correo: </string>
     <string name="dateInfo">Miembro desde: </string>
     <string name="back">Volver</string>
+    <string name="avisar">Avisar</string>
+    <string name="info">Resultado</string>
 </resources>
