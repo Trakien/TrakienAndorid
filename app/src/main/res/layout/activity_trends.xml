@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TrendsActivity">
+
+    <ImageView
+        android:id="@+id/minilogoTrakien"
+        android:layout_width="81dp"
+        android:layout_height="82dp"
+        android:layout_marginStart="165dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="165dp"
+        android:contentDescription="@string/todo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logotrakien" />
+
+    <TextView
+        android:id="@+id/busquedaText"
+        android:layout_width="293dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginEnd="62dp"
+        android:clickable="false"
+        android:gravity="center"
+        android:text="TRENDS"
+        android:textColor="#FEA100"
+        android:textSize="60dp"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/minilogoTrakien" />
+
+    <TableLayout
+        android:layout_width="366dp"
+        android:layout_height="511dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="23dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/busquedaText">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/trend1"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="0dp"
+                android:clickable="false"
+                android:gravity="center"
+                android:text="#1"
+                android:textColor="#7029AC"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="monospace" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="122dp"
+                android:layout_height="112dp"
+                app:srcCompat="@drawable/trend_1" />
+
+            <TextView
+                android:id="@+id/trend1Info"
+                android:layout_width="131dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="0dp"
+                android:clickable="false"
+                android:fontFamily="serif"
+                android:gravity="left"
+                android:text="Categoria:\nCelulares\nModelo:\nGoogle pixel 6\nTienda:\nKtronix"
+                android:textColor="#000000"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="69dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="35dp"
+                android:text="Ir" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/trend2"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="0dp"
+                android:clickable="false"
+                android:gravity="center"
+                android:text="#2"
+                android:textColor="#7029AC"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="monospace" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="122dp"
+                android:layout_height="112dp"
+                app:srcCompat="@drawable/trend_2" />
+
+            <TextView
+                android:id="@+id/trend2Info"
+                android:layout_width="131dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="0dp"
+                android:clickable="false"
+                android:fontFamily="serif"
+                android:gravity="left"
+                android:text="Categoria:\nCelulares\nModelo:\nIphone 11\nTienda:\nAlkosto"
+                android:textColor="#000000"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="69dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="35dp"
+                android:text="Ir" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/trend3"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="0dp"
+                android:clickable="false"
+                android:gravity="center"
+                android:text="#3"
+                android:textColor="#7029AC"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="monospace" />
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="122dp"
+                android:layout_height="112dp"
+                app:srcCompat="@drawable/trend_3" />
+
+            <TextView
+                android:id="@+id/trend3Info"
+                android:layout_width="131dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="0dp"
+                android:clickable="false"
+                android:fontFamily="serif"
+                android:gravity="left"
+                android:text="Categoria:\nCelulares\nModelo:\nGalaxy S21\nTienda:\nKtronix"
+                android:textColor="#000000"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="69dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="35dp"
+                android:text="Ir" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/trend4"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="0dp"
+                android:clickable="false"
+                android:gravity="center"
+                android:text="#4"
+                android:textColor="#7029AC"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="monospace" />
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="122dp"
+                android:layout_height="112dp"
+                app:srcCompat="@drawable/trend_4" />
+
+            <TextView
+                android:id="@+id/trend4Info"
+                android:layout_width="131dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="0dp"
+                android:clickable="false"
+                android:fontFamily="serif"
+                android:gravity="left"
+                android:text="Categoria:\nCelulares\nModelo:\nMotorola G60\nTienda:\nAlkomprar"
+                android:textColor="#000000"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="69dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="35dp"
+                android:text="Ir" />
+
+        </TableRow>
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

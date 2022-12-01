@@ -27,6 +27,8 @@ public interface CustomerApi {
     public Call<CustomerDto> update(@Body CustomerDto customer, @Path("id") String id);
     @POST("/v2/auth")
     public Call<TokenDto> login(@Body LoginDto loginDto);
+    @GET("/v2/auth")
+    public Call<String> activeToken(@Header("Authorization") String authToken);
 
 
 }
