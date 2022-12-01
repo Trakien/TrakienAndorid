@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import co.trakien.options.ActivityAviso;
+import co.trakien.options.Profile;
 import co.trakien.products.ProductsActivity;
 
 public class HomeActivity extends AppCompatActivity {
@@ -38,7 +40,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void goPerfil(){
-        Intent profile = new Intent(this, HomeActivity.class);
+        Intent profile = new Intent(this, Profile.class);
         startActivity(profile);
     }
 
@@ -48,7 +50,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void goAvisos(){
-        Intent alert = new Intent(this, HomeActivity.class);
+        Intent alert = new Intent(this, ActivityAviso.class);
         startActivity(alert);
     }
 }

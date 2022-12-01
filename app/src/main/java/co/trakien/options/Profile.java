@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import co.trakien.HomeActivity;
 import co.trakien.R;
 import co.trakien.constants.Const;
 import co.trakien.data.model.LoggedInUser;
@@ -70,7 +71,7 @@ public class Profile extends AppCompatActivity {
         });
     }
     public void goHome(){
-        Intent home = new Intent(this, ProductsActivity.class);
+        Intent home = new Intent(this, HomeActivity.class);
         startActivity(home);
     }
 }

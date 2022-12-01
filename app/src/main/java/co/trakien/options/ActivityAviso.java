@@ -7,10 +7,11 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
+import co.trakien.HomeActivity;
 import co.trakien.R;
 import co.trakien.products.ProductsActivity;
 
-public class activity_aviso extends AppCompatActivity {
+public class ActivityAviso extends AppCompatActivity {
     Button avisar, volver;
     TextView info;
 
@@ -31,7 +32,7 @@ public class activity_aviso extends AppCompatActivity {
     }
 
     public void goHome(){
-        Intent home = new Intent(this, ProductsActivity.class);
+        Intent home = new Intent(this, HomeActivity.class);
         startActivity(home);
     }
 }

@@ -22,8 +22,8 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        activity
-            android:name=".activity_aviso"
+        <activity
+            android:name=".options.ActivityAviso"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
