@@ -17,6 +17,7 @@ import co.trakien.data.model.LoggedInUser;
 import co.trakien.interfaces.CustomerApi;
 import co.trakien.models.LoginDto;
 import co.trakien.models.TokenDto;
+import co.trakien.options.Profile;
 import co.trakien.products.ProductsActivity;
 import retrofit2.Call;
 import retrofit2.Callback;

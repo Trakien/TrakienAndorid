@@ -39,6 +39,13 @@ public class CustomerDto {
         this.createdAt = createdAt;
     }
 
+    public CustomerDto(String name, String email, String lastName, String createdAt) {
+        this.name = name;
+        this.email = email;
+        this.lastName = lastName;
+        this.createdAt = createdAt;
+    }
+
     /**
      * Get the id
      *

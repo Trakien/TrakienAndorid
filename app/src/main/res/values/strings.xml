@@ -22,10 +22,17 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="nombre">Nombre</string>
+    <string name="profile">Info. Perfil: </string>
+    <string name="nameInfo">Nombre: </string>
+    <string name="lastNameInfo">Apellido: </string>
+    <string name="emailInfo">Correo: </string>
+    <string name="dateInfo">Miembro desde: </string>
+    <string name="back">Volver</string>
+    <string name="avisar">Avisar</string>
+    <string name="info">Resultado</string>
     <string name="txt_pages">1/25</string>
     <string name="button_paginator">button for paginator</string>
 </resources>
