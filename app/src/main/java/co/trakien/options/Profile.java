@@ -54,10 +54,10 @@ public class Profile extends AppCompatActivity {
                     if (response.isSuccessful()){
                         CustomerDto cus = response.body();
                         assert cus != null;
-                        dateInfo.setText(dateInfo.getText() +" "+ cus.getCreatedAt());
-                        nameInfo.setText(nameInfo.getText() +" "+ cus.getName());
-                        lastNameInfo.setText(lastNameInfo.getText() +" " + cus.getLastName());
-                        emailinfo.setText(emailinfo.getText() + " " + cus.getEmail());
+                        dateInfo.setText(cus.getCreatedAt());
+                        nameInfo.setText(cus.getName());
+                        lastNameInfo.setText(cus.getLastName());
+                        emailinfo.setText(cus.getEmail());
                     }
                 } catch (Exception ex) {
                     Toast.makeText(Profile.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
