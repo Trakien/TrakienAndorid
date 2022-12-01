@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".products.ProductsActivity">
+
+    <EditText
+        android:id="@+id/searchName"
+        android:layout_width="375dp"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="50dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/text_search"
+        android:inputType="textFilter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></EditText>
+
+    <co.trakien.products.elements.MultiSpinner
+        android:id="@+id/categories"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="15dp"
+        android:contentDescription="@string/text_spinner_categories"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/brands" />
+
+    <co.trakien.products.elements.MultiSpinner
+        android:id="@+id/brands"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="15dp"
+        android:contentDescription="@string/text_spinner_brands"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchName" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_products"
+        android:layout_width="375dp"
+        android:layout_height="522dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/categories" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
